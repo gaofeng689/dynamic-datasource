@@ -1,0 +1,34 @@
+# =============================================
+# 方案二：自定义动态数据源实现
+# 基于 AbstractRoutingDataSource + AOP + ThreadLocal
+# =============================================
+
+# 排除 Spring Boot 和 Baomidou 的自动 DataSource 配置
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration
+
+# 自定义数据源配置
+custom:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      # HikariCP 连接池配置
+      hikari:
+        pool-name: MasterPool
+        maximum-pool-size: 10
+        minimum-idle: 5
+    slave:
+      jdbc-url: jdbc:mysql://localhost:3306/db_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        pool-name: SlavePool
+        maximum-pool-size: 10
+        minimum-idle: 5

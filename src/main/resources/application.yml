@@ -1,0 +1,19 @@
+# =============================================
+# 公共配置
+# 默认使用 baomidou 方案，切换 custom 即可体验自定义实现
+# =============================================
+spring:
+  profiles:
+    active: custom
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# 日志（方便观察数据源切换）
+logging:
+  level:
+    com.example.dynamicdatasource: DEBUG

@@ -1,0 +1,13 @@
+# IDE
+.idea/
+*.iml
+
+# Claude
+.claude/
+
+# Maven
+target/
+
+# OS
+.DS_Store
+Thumbs.db

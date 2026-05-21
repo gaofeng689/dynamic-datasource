@@ -1,0 +1,20 @@
+# =============================================
+# 方案一：Baomidou dynamic-datasource 官方 starter
+# 只需配置多数据源 + @DS 注解即可切换
+# =============================================
+spring:
+  datasource:
+    dynamic:
+      primary: master            # 默认数据源
+      strict: false              # 严格模式：找不到数据源时是否抛异常
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave:
+          url: jdbc:mysql://localhost:3306/db_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
